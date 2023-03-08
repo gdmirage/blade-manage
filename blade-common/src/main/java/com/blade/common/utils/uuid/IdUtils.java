@@ -3,7 +3,7 @@ package com.blade.common.utils.uuid;
 /**
  * ID生成器工具类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class IdUtils
 {

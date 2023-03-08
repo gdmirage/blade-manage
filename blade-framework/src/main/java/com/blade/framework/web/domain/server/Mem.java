@@ -5,7 +5,7 @@ import com.blade.common.utils.Arith;
 /**
  * 內存相关信息
  * 
- * @author ruoyi
+ * @author blade
  */
 public class Mem
 {

@@ -11,7 +11,7 @@ import com.blade.common.enums.LimitType;
 /**
  * 限流注解
  * 
- * @author ruoyi
+ * @author blade
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

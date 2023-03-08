@@ -22,7 +22,7 @@ import com.blade.common.utils.ip.IpUtils;
 /**
  * 限流处理
  *
- * @author ruoyi
+ * @author blade
  */
 @Aspect
 @Component

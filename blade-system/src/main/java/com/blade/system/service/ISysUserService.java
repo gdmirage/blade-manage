@@ -6,7 +6,7 @@ import com.blade.common.core.domain.entity.SysUser;
 /**
  * 用户 业务层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface ISysUserService
 {

@@ -32,7 +32,7 @@ import com.blade.system.service.ISysUserService;
 /**
  * 登录校验方法
  * 
- * @author ruoyi
+ * @author blade
  */
 @Component
 public class SysLoginService

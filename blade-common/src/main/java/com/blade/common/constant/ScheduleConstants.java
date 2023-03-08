@@ -3,7 +3,7 @@ package com.blade.common.constant;
 /**
  * 任务调度通用常量
  * 
- * @author ruoyi
+ * @author blade
  */
 public class ScheduleConstants
 {

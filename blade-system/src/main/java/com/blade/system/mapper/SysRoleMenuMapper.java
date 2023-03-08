@@ -6,7 +6,7 @@ import com.blade.system.domain.SysRoleMenu;
 /**
  * 角色与菜单关联表 数据层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface SysRoleMenuMapper
 {

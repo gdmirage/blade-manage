@@ -6,7 +6,7 @@ import com.blade.system.domain.SysPost;
 /**
  * 岗位信息 数据层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface SysPostMapper
 {

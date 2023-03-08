@@ -5,7 +5,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * 缓存信息
  * 
- * @author ruoyi
+ * @author blade
  */
 public class SysCache
 {

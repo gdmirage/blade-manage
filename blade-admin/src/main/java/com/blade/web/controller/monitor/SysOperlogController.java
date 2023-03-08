@@ -22,7 +22,7 @@ import com.blade.system.service.ISysOperLogService;
 /**
  * 操作日志记录
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 @RequestMapping("/monitor/operlog")

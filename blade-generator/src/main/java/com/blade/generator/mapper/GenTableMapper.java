@@ -6,7 +6,7 @@ import com.blade.generator.domain.GenTable;
 /**
  * 业务 数据层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface GenTableMapper
 {

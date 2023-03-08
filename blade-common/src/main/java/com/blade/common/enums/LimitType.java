@@ -3,7 +3,7 @@ package com.blade.common.enums;
 /**
  * 限流类型
  *
- * @author ruoyi
+ * @author blade
  */
 
 public enum LimitType

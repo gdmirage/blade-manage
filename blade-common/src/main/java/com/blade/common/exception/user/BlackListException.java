@@ -3,7 +3,7 @@ package com.blade.common.exception.user;
 /**
  * 黑名单IP异常类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class BlackListException extends UserException
 {

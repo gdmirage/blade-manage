@@ -13,7 +13,7 @@ import com.blade.common.core.text.StrFormatter;
 /**
  * 字符串工具类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils
 {

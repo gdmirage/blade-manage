@@ -16,7 +16,7 @@ import com.blade.generator.domain.GenTableColumn;
 /**
  * 模板处理工具类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class VelocityUtils
 {

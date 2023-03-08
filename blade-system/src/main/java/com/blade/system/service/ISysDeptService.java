@@ -7,7 +7,7 @@ import com.blade.common.core.domain.entity.SysDept;
 /**
  * 部门管理 服务层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface ISysDeptService
 {

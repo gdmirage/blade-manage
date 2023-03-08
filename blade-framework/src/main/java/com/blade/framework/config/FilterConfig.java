@@ -15,7 +15,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * Filter配置
  *
- * @author ruoyi
+ * @author blade
  */
 @Configuration
 public class FilterConfig

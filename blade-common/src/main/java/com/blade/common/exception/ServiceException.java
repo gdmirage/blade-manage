@@ -3,7 +3,7 @@ package com.blade.common.exception;
 /**
  * 业务异常
  * 
- * @author ruoyi
+ * @author blade
  */
 public final class ServiceException extends RuntimeException
 {

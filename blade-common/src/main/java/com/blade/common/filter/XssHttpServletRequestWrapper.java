@@ -15,7 +15,7 @@ import com.blade.common.utils.html.EscapeUtil;
 /**
  * XSS过滤处理
  * 
- * @author ruoyi
+ * @author blade
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper
 {

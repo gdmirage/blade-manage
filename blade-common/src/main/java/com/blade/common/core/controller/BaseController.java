@@ -24,7 +24,7 @@ import com.blade.common.utils.sql.SqlUtil;
 /**
  * web层通用数据处理
  * 
- * @author ruoyi
+ * @author blade
  */
 public class BaseController
 {

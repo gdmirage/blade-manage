@@ -25,7 +25,7 @@ import com.blade.system.service.ISysPostService;
 /**
  * 岗位信息操作处理
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 @RequestMapping("/system/post")

@@ -21,7 +21,7 @@ import com.blade.system.service.ISysDictTypeService;
 /**
  * 字典 业务层处理
  * 
- * @author ruoyi
+ * @author blade
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService

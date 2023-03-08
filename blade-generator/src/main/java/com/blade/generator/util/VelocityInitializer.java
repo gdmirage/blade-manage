@@ -7,7 +7,7 @@ import com.blade.common.constant.Constants;
 /**
  * VelocityEngine工厂
  * 
- * @author ruoyi
+ * @author blade
  */
 public class VelocityInitializer
 {

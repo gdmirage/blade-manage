@@ -3,7 +3,7 @@ package com.blade.common.core.domain.model;
 /**
  * 用户登录对象
  * 
- * @author ruoyi
+ * @author blade
  */
 public class LoginBody
 {

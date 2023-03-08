@@ -40,7 +40,7 @@ import com.blade.generator.util.VelocityUtils;
 /**
  * 业务 服务层实现
  * 
- * @author ruoyi
+ * @author blade
  */
 @Service
 public class GenTableServiceImpl implements IGenTableService

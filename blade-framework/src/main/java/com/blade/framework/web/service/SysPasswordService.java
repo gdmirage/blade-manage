@@ -20,7 +20,7 @@ import com.blade.framework.security.context.AuthenticationContextHolder;
 /**
  * 登录密码方法
  * 
- * @author ruoyi
+ * @author blade
  */
 @Component
 public class SysPasswordService

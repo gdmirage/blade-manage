@@ -3,7 +3,7 @@ package com.blade.system.domain;
 /**
  * 当前在线会话
  * 
- * @author ruoyi
+ * @author blade
  */
 public class SysUserOnline
 {

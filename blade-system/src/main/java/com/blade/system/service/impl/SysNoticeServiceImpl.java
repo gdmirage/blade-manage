@@ -10,7 +10,7 @@ import com.blade.system.service.ISysNoticeService;
 /**
  * 公告 服务层实现
  * 
- * @author ruoyi
+ * @author blade
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService

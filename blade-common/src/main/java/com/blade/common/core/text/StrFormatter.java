@@ -5,7 +5,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * 字符串格式化
  * 
- * @author ruoyi
+ * @author blade
  */
 public class StrFormatter
 {

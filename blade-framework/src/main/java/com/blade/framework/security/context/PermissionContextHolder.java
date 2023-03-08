@@ -7,7 +7,7 @@ import com.blade.common.core.text.Convert;
 /**
  * 权限信息
  * 
- * @author ruoyi
+ * @author blade
  */
 public class PermissionContextHolder
 {

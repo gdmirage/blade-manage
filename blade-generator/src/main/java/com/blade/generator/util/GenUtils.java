@@ -11,7 +11,7 @@ import com.blade.generator.domain.GenTableColumn;
 /**
  * 代码生成器 工具类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class GenUtils
 {

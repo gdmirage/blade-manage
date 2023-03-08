@@ -3,7 +3,7 @@ package com.blade.common.exception;
 /**
  * 演示模式异常
  * 
- * @author ruoyi
+ * @author blade
  */
 public class DemoModeException extends RuntimeException
 {

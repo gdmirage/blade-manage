@@ -10,7 +10,7 @@ import com.blade.framework.web.domain.Server;
 /**
  * 服务器监控
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 @RequestMapping("/monitor/server")

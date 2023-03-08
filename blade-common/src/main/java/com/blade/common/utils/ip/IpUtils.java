@@ -9,7 +9,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * 获取IP方法
  * 
- * @author ruoyi
+ * @author blade
  */
 public class IpUtils
 {

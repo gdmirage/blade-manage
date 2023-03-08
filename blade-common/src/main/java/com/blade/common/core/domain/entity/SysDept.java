@@ -13,7 +13,7 @@ import com.blade.common.core.domain.BaseEntity;
 /**
  * 部门表 sys_dept
  * 
- * @author ruoyi
+ * @author blade
  */
 public class SysDept extends BaseEntity
 {

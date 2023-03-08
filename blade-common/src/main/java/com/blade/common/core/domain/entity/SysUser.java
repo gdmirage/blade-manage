@@ -15,7 +15,7 @@ import com.blade.common.xss.Xss;
 /**
  * 用户对象 sys_user
  * 
- * @author ruoyi
+ * @author blade
  */
 public class SysUser extends BaseEntity
 {

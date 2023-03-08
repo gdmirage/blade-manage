@@ -6,7 +6,7 @@ import com.blade.common.constant.HttpStatus;
 /**
  * 响应信息主体
  *
- * @author ruoyi
+ * @author blade
  */
 public class R<T> implements Serializable
 {

@@ -3,7 +3,7 @@ package com.blade.common.constant;
 /**
  * 代码生成通用常量
  * 
- * @author ruoyi
+ * @author blade
  */
 public class GenConstants
 {

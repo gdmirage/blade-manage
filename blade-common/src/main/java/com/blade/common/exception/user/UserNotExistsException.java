@@ -3,7 +3,7 @@ package com.blade.common.exception.user;
 /**
  * 用户不存在异常类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class UserNotExistsException extends UserException
 {

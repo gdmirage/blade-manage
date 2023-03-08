@@ -3,7 +3,7 @@ package com.blade.common.utils;
 /**
  * 处理并记录日志文件
  * 
- * @author ruoyi
+ * @author blade
  */
 public class LogUtils
 {

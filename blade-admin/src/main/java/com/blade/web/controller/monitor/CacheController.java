@@ -24,7 +24,7 @@ import com.blade.system.domain.SysCache;
 /**
  * 缓存监控
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 @RequestMapping("/monitor/cache")

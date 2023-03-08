@@ -7,7 +7,7 @@ import com.blade.common.core.domain.entity.SysDictType;
 /**
  * 字典 业务层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface ISysDictTypeService
 {

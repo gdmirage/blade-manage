@@ -9,7 +9,7 @@ import com.blade.common.core.domain.BaseEntity;
 /**
  * 系统访问记录表 sys_logininfor
  * 
- * @author ruoyi
+ * @author blade
  */
 public class SysLogininfor extends BaseEntity
 {

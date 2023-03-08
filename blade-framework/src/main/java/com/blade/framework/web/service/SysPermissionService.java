@@ -13,7 +13,7 @@ import com.blade.system.service.ISysRoleService;
 /**
  * 用户权限处理
  * 
- * @author ruoyi
+ * @author blade
  */
 @Component
 public class SysPermissionService

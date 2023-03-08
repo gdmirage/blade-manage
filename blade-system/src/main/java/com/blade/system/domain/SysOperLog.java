@@ -9,7 +9,7 @@ import com.blade.common.core.domain.BaseEntity;
 /**
  * 操作日志记录表 oper_log
  * 
- * @author ruoyi
+ * @author blade
  */
 public class SysOperLog extends BaseEntity
 {

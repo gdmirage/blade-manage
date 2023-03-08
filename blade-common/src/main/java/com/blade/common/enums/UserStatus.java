@@ -3,7 +3,7 @@ package com.blade.common.enums;
 /**
  * 用户状态
  * 
- * @author ruoyi
+ * @author blade
  */
 public enum UserStatus
 {

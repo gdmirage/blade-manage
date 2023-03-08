@@ -3,7 +3,7 @@ package com.blade.framework.web.domain.server;
 /**
  * 系统相关信息
  * 
- * @author ruoyi
+ * @author blade
  */
 public class Sys
 {

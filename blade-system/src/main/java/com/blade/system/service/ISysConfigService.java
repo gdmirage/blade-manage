@@ -6,7 +6,7 @@ import com.blade.system.domain.SysConfig;
 /**
  * 参数配置 服务层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface ISysConfigService
 {

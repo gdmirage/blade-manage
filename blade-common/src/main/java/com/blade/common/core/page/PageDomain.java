@@ -5,7 +5,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * 分页数据
  * 
- * @author ruoyi
+ * @author blade
  */
 public class PageDomain
 {

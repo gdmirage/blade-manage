@@ -23,7 +23,7 @@ import com.blade.system.service.ISysNoticeService;
 /**
  * 公告 信息操作处理
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 @RequestMapping("/system/notice")

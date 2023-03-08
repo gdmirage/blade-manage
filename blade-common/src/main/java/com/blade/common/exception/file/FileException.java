@@ -5,7 +5,7 @@ import com.blade.common.exception.base.BaseException;
 /**
  * 文件信息异常类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class FileException extends BaseException
 {

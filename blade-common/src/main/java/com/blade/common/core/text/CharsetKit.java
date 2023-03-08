@@ -7,7 +7,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * 字符集工具类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class CharsetKit
 {

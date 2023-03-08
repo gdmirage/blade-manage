@@ -6,7 +6,7 @@ import com.blade.common.utils.StringUtils;
 /**
  * 基础异常
  * 
- * @author ruoyi
+ * @author blade
  */
 public class BaseException extends RuntimeException
 {

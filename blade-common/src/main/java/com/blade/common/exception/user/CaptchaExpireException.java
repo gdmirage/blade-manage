@@ -3,7 +3,7 @@ package com.blade.common.exception.user;
 /**
  * 验证码失效异常类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class CaptchaExpireException extends UserException
 {

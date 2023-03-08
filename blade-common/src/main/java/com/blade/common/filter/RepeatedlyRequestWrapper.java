@@ -15,7 +15,7 @@ import com.blade.common.constant.Constants;
 /**
  * 构建可重复读取inputStream的request
  * 
- * @author ruoyi
+ * @author blade
  */
 public class RepeatedlyRequestWrapper extends HttpServletRequestWrapper
 {

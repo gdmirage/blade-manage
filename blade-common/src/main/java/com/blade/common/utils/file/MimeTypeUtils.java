@@ -3,7 +3,7 @@ package com.blade.common.utils.file;
 /**
  * 媒体类型工具类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class MimeTypeUtils
 {

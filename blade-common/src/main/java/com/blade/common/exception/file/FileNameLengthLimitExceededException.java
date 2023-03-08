@@ -3,7 +3,7 @@ package com.blade.common.exception.file;
 /**
  * 文件名称超长限制异常类
  * 
- * @author ruoyi
+ * @author blade
  */
 public class FileNameLengthLimitExceededException extends FileException
 {

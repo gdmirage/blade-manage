@@ -3,7 +3,7 @@ package com.blade.common.constant;
 /**
  * 返回状态码
  * 
- * @author ruoyi
+ * @author blade
  */
 public class HttpStatus
 {

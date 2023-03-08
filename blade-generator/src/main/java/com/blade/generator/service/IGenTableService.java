@@ -7,7 +7,7 @@ import com.blade.generator.domain.GenTable;
 /**
  * 业务 服务层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface IGenTableService
 {

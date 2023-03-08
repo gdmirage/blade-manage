@@ -11,7 +11,7 @@ import com.blade.quartz.domain.SysJob;
 /**
  * 任务执行工具
  *
- * @author ruoyi
+ * @author blade
  */
 public class JobInvokeUtil
 {

@@ -20,7 +20,7 @@ import com.blade.system.service.ISysMenuService;
 /**
  * 登录验证
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 public class SysLoginController

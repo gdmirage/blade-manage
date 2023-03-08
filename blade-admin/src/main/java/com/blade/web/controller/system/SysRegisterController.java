@@ -14,7 +14,7 @@ import com.blade.system.service.ISysConfigService;
 /**
  * 注册验证
  * 
- * @author ruoyi
+ * @author blade
  */
 @RestController
 public class SysRegisterController extends BaseController

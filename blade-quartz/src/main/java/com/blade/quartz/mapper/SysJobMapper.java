@@ -6,7 +6,7 @@ import com.blade.quartz.domain.SysJob;
 /**
  * 调度任务信息 数据层
  * 
- * @author ruoyi
+ * @author blade
  */
 public interface SysJobMapper
 {
