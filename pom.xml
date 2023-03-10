@@ -30,6 +30,7 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
         <jwt.version>0.9.1</jwt.version>
+        <okhttp.version>4.10.0</okhttp.version>
     </properties>
 	
     <!-- 依赖声明 -->
@@ -44,6 +45,43 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- 内部服务开始 -->
+            <!-- 定时任务-->
+            <dependency>
+                <groupId>com.blade</groupId>
+                <artifactId>blade-quartz</artifactId>
+                <version>${blade.version}</version>
+            </dependency>
+
+            <!-- 代码生成-->
+            <dependency>
+                <groupId>com.blade</groupId>
+                <artifactId>blade-generator</artifactId>
+                <version>${blade.version}</version>
+            </dependency>
+
+            <!-- 核心模块-->
+            <dependency>
+                <groupId>com.blade</groupId>
+                <artifactId>blade-framework</artifactId>
+                <version>${blade.version}</version>
+            </dependency>
+
+            <!-- 系统模块-->
+            <dependency>
+                <groupId>com.blade</groupId>
+                <artifactId>blade-system</artifactId>
+                <version>${blade.version}</version>
+            </dependency>
+
+            <!-- 通用工具-->
+            <dependency>
+                <groupId>com.blade</groupId>
+                <artifactId>blade-common</artifactId>
+                <version>${blade.version}</version>
+            </dependency>
+            <!-- 内部服务结束 -->
 
             <!-- 阿里数据库连接池 -->
             <dependency>
@@ -135,41 +173,12 @@
                 <version>${kaptcha.version}</version>
             </dependency>
 
-            <!-- 定时任务-->
+            <!-- okhttp -->
             <dependency>
-                <groupId>com.blade</groupId>
-                <artifactId>blade-quartz</artifactId>
-                <version>${blade.version}</version>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
             </dependency>
-
-            <!-- 代码生成-->
-            <dependency>
-                <groupId>com.blade</groupId>
-                <artifactId>blade-generator</artifactId>
-                <version>${blade.version}</version>
-            </dependency>
-
-            <!-- 核心模块-->
-            <dependency>
-                <groupId>com.blade</groupId>
-                <artifactId>blade-framework</artifactId>
-                <version>${blade.version}</version>
-            </dependency>
-
-            <!-- 系统模块-->
-            <dependency>
-                <groupId>com.blade</groupId>
-                <artifactId>blade-system</artifactId>
-                <version>${blade.version}</version>
-            </dependency>
-
-            <!-- 通用工具-->
-            <dependency>
-                <groupId>com.blade</groupId>
-                <artifactId>blade-common</artifactId>
-                <version>${blade.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
