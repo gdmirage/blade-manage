@@ -25,15 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectGptApiRequestMsgList" parameterType="GptApiRequestMsg" resultMap="GptApiRequestMsgResult">
         <include refid="selectGptApiRequestMsgVo"/>
         <where>  
-            <if test="creator != null  and creator != ''"> and creator = #{creator}</if>
-            <if test="modifier != null  and modifier != ''"> and modifier = #{modifier}</if>
-            <if test="modifyTime != null "> and modify_time = #{modifyTime}</if>
-            <if test="isDelete != null  and isDelete != ''"> and is_delete = #{isDelete}</if>
-            <if test="version != null "> and version = #{version}</if>
+            <if test="params.beginModifyTime != null and params.beginModifyTime != '' and params.endModifyTime != null and params.endModifyTime != ''"> and modify_time between #{params.beginModifyTime} and #{params.endModifyTime}</if>
             <if test="accountKey != null  and accountKey != ''"> and account_key = #{accountKey}</if>
-            <if test="apiRequest != null  and apiRequest != ''"> and api_request = #{apiRequest}</if>
-            <if test="apiResponse != null  and apiResponse != ''"> and api_response = #{apiResponse}</if>
-            <if test="apiResultCode != null  and apiResultCode != ''"> and api_result_code = #{apiResultCode}</if>
         </where>
     </select>
     

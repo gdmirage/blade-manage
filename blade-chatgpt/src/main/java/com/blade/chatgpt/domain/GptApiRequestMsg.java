@@ -21,11 +21,9 @@ public class GptApiRequestMsg extends BaseEntity
     private String id;
 
     /** 创建人 */
-    @Excel(name = "创建人")
     private String creator;
 
     /** 修改人 */
-    @Excel(name = "修改人")
     private String modifier;
 
     /** 修改时间 */
@@ -34,11 +32,9 @@ public class GptApiRequestMsg extends BaseEntity
     private Date modifyTime;
 
     /** 删除标识， 1：yes， 2：no */
-    @Excel(name = "删除标识， 1：yes， 2：no")
     private String isDelete;
 
     /** 版本，用于乐观锁 */
-    @Excel(name = "版本，用于乐观锁")
     private Long version;
 
     /** GPT账号的key */
@@ -50,7 +46,6 @@ public class GptApiRequestMsg extends BaseEntity
     private String apiRequest;
 
     /** API返回结果 */
-    @Excel(name = "API返回结果")
     private String apiResponse;
 
     /** API返回结果代码 */

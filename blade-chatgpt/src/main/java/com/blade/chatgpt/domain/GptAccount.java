@@ -21,11 +21,9 @@ public class GptAccount extends BaseEntity
     private String id;
 
     /** 创建人 */
-    @Excel(name = "创建人")
     private String creator;
 
     /** 修改人 */
-    @Excel(name = "修改人")
     private String modifier;
 
     /** 修改时间 */
@@ -34,11 +32,9 @@ public class GptAccount extends BaseEntity
     private Date modifyTime;
 
     /** 删除标识， 1: yes, 2: no */
-    @Excel(name = "删除标识， 1: yes, 2: no")
     private String isDelete;
 
     /** 版本，用于乐观锁 */
-    @Excel(name = "版本，用于乐观锁")
     private Long version;
 
     /** 账号 */
@@ -46,11 +42,9 @@ public class GptAccount extends BaseEntity
     private String account;
 
     /** 邮箱登录密码 */
-    @Excel(name = "邮箱登录密码")
     private String emailPassword;
 
     /** GPT密码 */
-    @Excel(name = "GPT密码")
     private String gptPassword;
 
     /** GPT账号的key */
@@ -58,11 +52,9 @@ public class GptAccount extends BaseEntity
     private String key;
 
     /** 总共的token */
-    @Excel(name = "总共的token")
     private Long totalToken;
 
     /** 已经使用的token */
-    @Excel(name = "已经使用的token")
     private Long usedToken;
 
     /** 启用状态， 1: yes, 2: no */

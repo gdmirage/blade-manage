@@ -28,17 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectGptAccountList" parameterType="GptAccount" resultMap="GptAccountResult">
         <include refid="selectGptAccountVo"/>
         <where>  
-            <if test="creator != null  and creator != ''"> and creator = #{creator}</if>
-            <if test="modifier != null  and modifier != ''"> and modifier = #{modifier}</if>
-            <if test="modifyTime != null "> and modify_time = #{modifyTime}</if>
-            <if test="isDelete != null  and isDelete != ''"> and is_delete = #{isDelete}</if>
-            <if test="version != null "> and version = #{version}</if>
+            <if test="params.beginModifyTime != null and params.beginModifyTime != '' and params.endModifyTime != null and params.endModifyTime != ''"> and modify_time between #{params.beginModifyTime} and #{params.endModifyTime}</if>
             <if test="account != null  and account != ''"> and account = #{account}</if>
-            <if test="emailPassword != null  and emailPassword != ''"> and email_password = #{emailPassword}</if>
-            <if test="gptPassword != null  and gptPassword != ''"> and gpt_password = #{gptPassword}</if>
             <if test="key != null  and key != ''"> and key = #{key}</if>
-            <if test="totalToken != null "> and total_token = #{totalToken}</if>
-            <if test="usedToken != null "> and used_token = #{usedToken}</if>
             <if test="enabled != null  and enabled != ''"> and enabled = #{enabled}</if>
         </where>
     </select>
