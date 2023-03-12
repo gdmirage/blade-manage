@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.chatgpt.mapper.GptAccountMapper">
+    
+    <resultMap type="GptAccount" id="GptAccountResult">
+        <result property="id"    column="id"    />
+        <result property="creator"    column="creator"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modifier"    column="modifier"    />
+        <result property="modifyTime"    column="modify_time"    />
+        <result property="isDelete"    column="is_delete"    />
+        <result property="version"    column="version"    />
+        <result property="account"    column="account"    />
+        <result property="emailPassword"    column="email_password"    />
+        <result property="gptPassword"    column="gpt_password"    />
+        <result property="key"    column="key"    />
+        <result property="totalToken"    column="total_token"    />
+        <result property="usedToken"    column="used_token"    />
+        <result property="enabled"    column="enabled"    />
+    </resultMap>
+
+    <sql id="selectGptAccountVo">
+        select id, creator, create_time, modifier, modify_time, is_delete, version, account, email_password, gpt_password, key, total_token, used_token, enabled from gpt_account
+    </sql>
+
+    <select id="selectGptAccountList" parameterType="GptAccount" resultMap="GptAccountResult">
+        <include refid="selectGptAccountVo"/>
+        <where>  
+            <if test="creator != null  and creator != ''"> and creator = #{creator}</if>
+            <if test="modifier != null  and modifier != ''"> and modifier = #{modifier}</if>
+            <if test="modifyTime != null "> and modify_time = #{modifyTime}</if>
+            <if test="isDelete != null  and isDelete != ''"> and is_delete = #{isDelete}</if>
+            <if test="version != null "> and version = #{version}</if>
+            <if test="account != null  and account != ''"> and account = #{account}</if>
+            <if test="emailPassword != null  and emailPassword != ''"> and email_password = #{emailPassword}</if>
+            <if test="gptPassword != null  and gptPassword != ''"> and gpt_password = #{gptPassword}</if>
+            <if test="key != null  and key != ''"> and key = #{key}</if>
+            <if test="totalToken != null "> and total_token = #{totalToken}</if>
+            <if test="usedToken != null "> and used_token = #{usedToken}</if>
+            <if test="enabled != null  and enabled != ''"> and enabled = #{enabled}</if>
+        </where>
+    </select>
+    
+    <select id="selectGptAccountById" parameterType="String" resultMap="GptAccountResult">
+        <include refid="selectGptAccountVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertGptAccount" parameterType="GptAccount">
+        insert into gpt_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="creator != null">creator,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modifier != null">modifier,</if>
+            <if test="modifyTime != null">modify_time,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="version != null">version,</if>
+            <if test="account != null">account,</if>
+            <if test="emailPassword != null">email_password,</if>
+            <if test="gptPassword != null">gpt_password,</if>
+            <if test="key != null">key,</if>
+            <if test="totalToken != null">total_token,</if>
+            <if test="usedToken != null">used_token,</if>
+            <if test="enabled != null">enabled,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="creator != null">#{creator},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modifier != null">#{modifier},</if>
+            <if test="modifyTime != null">#{modifyTime},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="version != null">#{version},</if>
+            <if test="account != null">#{account},</if>
+            <if test="emailPassword != null">#{emailPassword},</if>
+            <if test="gptPassword != null">#{gptPassword},</if>
+            <if test="key != null">#{key},</if>
+            <if test="totalToken != null">#{totalToken},</if>
+            <if test="usedToken != null">#{usedToken},</if>
+            <if test="enabled != null">#{enabled},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGptAccount" parameterType="GptAccount">
+        update gpt_account
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifier != null">modifier = #{modifier},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            <if test="isDelete != null">is_delete = #{isDelete},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="account != null">account = #{account},</if>
+            <if test="emailPassword != null">email_password = #{emailPassword},</if>
+            <if test="gptPassword != null">gpt_password = #{gptPassword},</if>
+            <if test="key != null">key = #{key},</if>
+            <if test="totalToken != null">total_token = #{totalToken},</if>
+            <if test="usedToken != null">used_token = #{usedToken},</if>
+            <if test="enabled != null">enabled = #{enabled},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteGptAccountById" parameterType="String">
+        delete from gpt_account where id = #{id}
+    </delete>
+
+    <delete id="deleteGptAccountByIds" parameterType="String">
+        delete from gpt_account where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

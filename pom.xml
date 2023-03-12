@@ -60,6 +60,12 @@
                 <version>${blade.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.blade</groupId>
+                <artifactId>blade-chatgpt</artifactId>
+                <version>${blade.version}</version>
+            </dependency>
+
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.blade</groupId>

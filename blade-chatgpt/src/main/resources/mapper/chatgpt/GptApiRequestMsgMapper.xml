@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.chatgpt.mapper.GptApiRequestMsgMapper">
+    
+    <resultMap type="GptApiRequestMsg" id="GptApiRequestMsgResult">
+        <result property="id"    column="id"    />
+        <result property="creator"    column="creator"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modifier"    column="modifier"    />
+        <result property="modifyTime"    column="modify_time"    />
+        <result property="isDelete"    column="is_delete"    />
+        <result property="version"    column="version"    />
+        <result property="accountKey"    column="account_key"    />
+        <result property="apiRequest"    column="api_request"    />
+        <result property="apiResponse"    column="api_response"    />
+        <result property="apiResultCode"    column="api_result_code"    />
+    </resultMap>
+
+    <sql id="selectGptApiRequestMsgVo">
+        select id, creator, create_time, modifier, modify_time, is_delete, version, account_key, api_request, api_response, api_result_code from gpt_api_request_msg
+    </sql>
+
+    <select id="selectGptApiRequestMsgList" parameterType="GptApiRequestMsg" resultMap="GptApiRequestMsgResult">
+        <include refid="selectGptApiRequestMsgVo"/>
+        <where>  
+            <if test="creator != null  and creator != ''"> and creator = #{creator}</if>
+            <if test="modifier != null  and modifier != ''"> and modifier = #{modifier}</if>
+            <if test="modifyTime != null "> and modify_time = #{modifyTime}</if>
+            <if test="isDelete != null  and isDelete != ''"> and is_delete = #{isDelete}</if>
+            <if test="version != null "> and version = #{version}</if>
+            <if test="accountKey != null  and accountKey != ''"> and account_key = #{accountKey}</if>
+            <if test="apiRequest != null  and apiRequest != ''"> and api_request = #{apiRequest}</if>
+            <if test="apiResponse != null  and apiResponse != ''"> and api_response = #{apiResponse}</if>
+            <if test="apiResultCode != null  and apiResultCode != ''"> and api_result_code = #{apiResultCode}</if>
+        </where>
+    </select>
+    
+    <select id="selectGptApiRequestMsgById" parameterType="String" resultMap="GptApiRequestMsgResult">
+        <include refid="selectGptApiRequestMsgVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertGptApiRequestMsg" parameterType="GptApiRequestMsg">
+        insert into gpt_api_request_msg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="creator != null">creator,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modifier != null">modifier,</if>
+            <if test="modifyTime != null">modify_time,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="version != null">version,</if>
+            <if test="accountKey != null">account_key,</if>
+            <if test="apiRequest != null">api_request,</if>
+            <if test="apiResponse != null">api_response,</if>
+            <if test="apiResultCode != null">api_result_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="creator != null">#{creator},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modifier != null">#{modifier},</if>
+            <if test="modifyTime != null">#{modifyTime},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="version != null">#{version},</if>
+            <if test="accountKey != null">#{accountKey},</if>
+            <if test="apiRequest != null">#{apiRequest},</if>
+            <if test="apiResponse != null">#{apiResponse},</if>
+            <if test="apiResultCode != null">#{apiResultCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGptApiRequestMsg" parameterType="GptApiRequestMsg">
+        update gpt_api_request_msg
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifier != null">modifier = #{modifier},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            <if test="isDelete != null">is_delete = #{isDelete},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="accountKey != null">account_key = #{accountKey},</if>
+            <if test="apiRequest != null">api_request = #{apiRequest},</if>
+            <if test="apiResponse != null">api_response = #{apiResponse},</if>
+            <if test="apiResultCode != null">api_result_code = #{apiResultCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteGptApiRequestMsgById" parameterType="String">
+        delete from gpt_api_request_msg where id = #{id}
+    </delete>
+
+    <delete id="deleteGptApiRequestMsgByIds" parameterType="String">
+        delete from gpt_api_request_msg where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

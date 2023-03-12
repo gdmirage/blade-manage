@@ -61,6 +61,12 @@
             <artifactId>blade-generator</artifactId>
         </dependency>
 
+        <!-- chatgpt-->
+        <dependency>
+            <groupId>com.blade</groupId>
+            <artifactId>blade-chatgpt</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
