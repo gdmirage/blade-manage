@@ -183,6 +183,7 @@
 
     <modules>
         <module>blade-admin</module>
+        <module>blade-chatgpt</module>
         <module>blade-framework</module>
         <module>blade-system</module>
         <module>blade-quartz</module>
