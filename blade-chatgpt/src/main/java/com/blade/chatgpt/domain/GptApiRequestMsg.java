@@ -11,7 +11,7 @@ import com.blade.common.core.domain.BaseEntity;
  * GPT API 请求信息对象 gpt_api_request_msg
  * 
  * @author blade
- * @date 2023-03-12
+ * @date 2023-03-16
  */
 public class GptApiRequestMsg extends BaseEntity
 {
@@ -21,14 +21,13 @@ public class GptApiRequestMsg extends BaseEntity
     private String id;
 
     /** 创建人 */
+    @Excel(name = "创建人")
     private String creator;
 
     /** 修改人 */
     private String modifier;
 
     /** 修改时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "修改时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date modifyTime;
 
     /** 删除标识， 1：yes， 2：no */
@@ -41,15 +40,23 @@ public class GptApiRequestMsg extends BaseEntity
     @Excel(name = "GPT账号的key")
     private String accountKey;
 
+    /** 用户账号 */
+    @Excel(name = "用户账号")
+    private String userAccount;
+
+    /** 请求内容 */
+    private String requestContent;
+
+    /** 返回内容 */
+    private String responseContent;
+
     /** API请求参数 */
-    @Excel(name = "API请求参数")
     private String apiRequest;
 
     /** API返回结果 */
     private String apiResponse;
 
     /** API返回结果代码 */
-    @Excel(name = "API返回结果代码")
     private String apiResultCode;
 
     public void setId(String id) 
@@ -115,6 +122,33 @@ public class GptApiRequestMsg extends BaseEntity
     {
         return accountKey;
     }
+    public void setUserAccount(String userAccount) 
+    {
+        this.userAccount = userAccount;
+    }
+
+    public String getUserAccount() 
+    {
+        return userAccount;
+    }
+    public void setRequestContent(String requestContent) 
+    {
+        this.requestContent = requestContent;
+    }
+
+    public String getRequestContent() 
+    {
+        return requestContent;
+    }
+    public void setResponseContent(String responseContent) 
+    {
+        this.responseContent = responseContent;
+    }
+
+    public String getResponseContent() 
+    {
+        return responseContent;
+    }
     public void setApiRequest(String apiRequest) 
     {
         this.apiRequest = apiRequest;
@@ -154,6 +188,9 @@ public class GptApiRequestMsg extends BaseEntity
             .append("isDelete", getIsDelete())
             .append("version", getVersion())
             .append("accountKey", getAccountKey())
+            .append("userAccount", getUserAccount())
+            .append("requestContent", getRequestContent())
+            .append("responseContent", getResponseContent())
             .append("apiRequest", getApiRequest())
             .append("apiResponse", getApiResponse())
             .append("apiResultCode", getApiResultCode())

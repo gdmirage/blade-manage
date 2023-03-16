@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.chatgpt.mapper.GptApiRequestMsgMapper">
     
-    <resultMap type="GptApiRequestMsg" id="GptApiRequestMsgResult">
+    <resultMap type="com.blade.chatgpt.domain.GptApiRequestMsg" id="GptApiRequestMsgResult">
         <result property="id"    column="id"    />
         <result property="creator"    column="creator"    />
         <result property="createTime"    column="create_time"    />
@@ -13,20 +13,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="isDelete"    column="is_delete"    />
         <result property="version"    column="version"    />
         <result property="accountKey"    column="account_key"    />
+        <result property="userAccount"    column="user_account"    />
+        <result property="requestContent"    column="request_content"    />
+        <result property="responseContent"    column="response_content"    />
         <result property="apiRequest"    column="api_request"    />
         <result property="apiResponse"    column="api_response"    />
         <result property="apiResultCode"    column="api_result_code"    />
     </resultMap>
 
     <sql id="selectGptApiRequestMsgVo">
-        select id, creator, create_time, modifier, modify_time, is_delete, version, account_key, api_request, api_response, api_result_code from gpt_api_request_msg
+        select id, creator, create_time, modifier, modify_time, is_delete, version, account_key, user_account, request_content, response_content, api_request, api_response, api_result_code from gpt_api_request_msg
     </sql>
 
-    <select id="selectGptApiRequestMsgList" parameterType="GptApiRequestMsg" resultMap="GptApiRequestMsgResult">
+    <select id="selectGptApiRequestMsgList" parameterType="com.blade.chatgpt.domain.GptApiRequestMsg" resultMap="GptApiRequestMsgResult">
         <include refid="selectGptApiRequestMsgVo"/>
         <where>  
-            <if test="params.beginModifyTime != null and params.beginModifyTime != '' and params.endModifyTime != null and params.endModifyTime != ''"> and modify_time between #{params.beginModifyTime} and #{params.endModifyTime}</if>
             <if test="accountKey != null  and accountKey != ''"> and account_key = #{accountKey}</if>
+            <if test="userAccount != null  and userAccount != ''"> and user_account = #{userAccount}</if>
         </where>
     </select>
     
@@ -35,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertGptApiRequestMsg" parameterType="GptApiRequestMsg">
+    <insert id="insertGptApiRequestMsg" parameterType="com.blade.chatgpt.domain.GptApiRequestMsg">
         insert into gpt_api_request_msg
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
@@ -46,6 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="isDelete != null">is_delete,</if>
             <if test="version != null">version,</if>
             <if test="accountKey != null">account_key,</if>
+            <if test="userAccount != null">user_account,</if>
+            <if test="requestContent != null">request_content,</if>
+            <if test="responseContent != null">response_content,</if>
             <if test="apiRequest != null">api_request,</if>
             <if test="apiResponse != null">api_response,</if>
             <if test="apiResultCode != null">api_result_code,</if>
@@ -59,13 +65,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="isDelete != null">#{isDelete},</if>
             <if test="version != null">#{version},</if>
             <if test="accountKey != null">#{accountKey},</if>
+            <if test="userAccount != null">#{userAccount},</if>
+            <if test="requestContent != null">#{requestContent},</if>
+            <if test="responseContent != null">#{responseContent},</if>
             <if test="apiRequest != null">#{apiRequest},</if>
             <if test="apiResponse != null">#{apiResponse},</if>
             <if test="apiResultCode != null">#{apiResultCode},</if>
          </trim>
     </insert>
 
-    <update id="updateGptApiRequestMsg" parameterType="GptApiRequestMsg">
+    <update id="updateGptApiRequestMsg" parameterType="com.blade.chatgpt.domain.GptApiRequestMsg">
         update gpt_api_request_msg
         <trim prefix="SET" suffixOverrides=",">
             <if test="creator != null">creator = #{creator},</if>
@@ -75,6 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="isDelete != null">is_delete = #{isDelete},</if>
             <if test="version != null">version = #{version},</if>
             <if test="accountKey != null">account_key = #{accountKey},</if>
+            <if test="userAccount != null">user_account = #{userAccount},</if>
+            <if test="requestContent != null">request_content = #{requestContent},</if>
+            <if test="responseContent != null">response_content = #{responseContent},</if>
             <if test="apiRequest != null">api_request = #{apiRequest},</if>
             <if test="apiResponse != null">api_response = #{apiResponse},</if>
             <if test="apiResultCode != null">api_result_code = #{apiResultCode},</if>
