@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.chatgpt.mapper.WebUserMapper">
+    
+    <resultMap type="com.blade.chatgpt.domain.WebUser" id="WebUserResult">
+        <result property="id"    column="id"    />
+        <result property="creator"    column="creator"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modifier"    column="modifier"    />
+        <result property="modifyTime"    column="modify_time"    />
+        <result property="isDelete"    column="is_delete"    />
+        <result property="version"    column="version"    />
+        <result property="userAccount"    column="user_account"    />
+        <result property="nickName"    column="nick_name"    />
+        <result property="email"    column="email"    />
+        <result property="password"    column="password"    />
+        <result property="phoneNumber"    column="phone_number"    />
+        <result property="sex"    column="sex"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="enabled"    column="enabled"    />
+        <result property="loginIp"    column="login_ip"    />
+        <result property="loginDate"    column="login_date"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectWebUserVo">
+        select id, creator, create_time, modifier, modify_time, is_delete, version, user_account, nick_name, email, password, phone_number, sex, avatar, enabled, login_ip, login_date, remark from web_user
+    </sql>
+
+    <select id="selectWebUserList" parameterType="com.blade.chatgpt.domain.WebUser" resultMap="WebUserResult">
+        <include refid="selectWebUserVo"/>
+        <where>  
+            <if test="params.beginModifyTime != null and params.beginModifyTime != '' and params.endModifyTime != null and params.endModifyTime != ''"> and modify_time between #{params.beginModifyTime} and #{params.endModifyTime}</if>
+            <if test="userAccount != null  and userAccount != ''"> and user_account = #{userAccount}</if>
+            <if test="nickName != null  and nickName != ''"> and nick_name like concat('%', #{nickName}, '%')</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="phoneNumber != null  and phoneNumber != ''"> and phone_number = #{phoneNumber}</if>
+            <if test="enabled != null  and enabled != ''"> and enabled = #{enabled}</if>
+        </where>
+    </select>
+    
+    <select id="selectWebUserById" parameterType="String" resultMap="WebUserResult">
+        <include refid="selectWebUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWebUser" parameterType="com.blade.chatgpt.domain.WebUser">
+        insert into web_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="creator != null">creator,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modifier != null">modifier,</if>
+            <if test="modifyTime != null">modify_time,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="version != null">version,</if>
+            <if test="userAccount != null">user_account,</if>
+            <if test="nickName != null">nick_name,</if>
+            <if test="email != null">email,</if>
+            <if test="password != null">password,</if>
+            <if test="phoneNumber != null">phone_number,</if>
+            <if test="sex != null">sex,</if>
+            <if test="avatar != null">avatar,</if>
+            <if test="enabled != null">enabled,</if>
+            <if test="loginIp != null">login_ip,</if>
+            <if test="loginDate != null">login_date,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="creator != null">#{creator},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modifier != null">#{modifier},</if>
+            <if test="modifyTime != null">#{modifyTime},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="version != null">#{version},</if>
+            <if test="userAccount != null">#{userAccount},</if>
+            <if test="nickName != null">#{nickName},</if>
+            <if test="email != null">#{email},</if>
+            <if test="password != null">#{password},</if>
+            <if test="phoneNumber != null">#{phoneNumber},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="avatar != null">#{avatar},</if>
+            <if test="enabled != null">#{enabled},</if>
+            <if test="loginIp != null">#{loginIp},</if>
+            <if test="loginDate != null">#{loginDate},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWebUser" parameterType="com.blade.chatgpt.domain.WebUser">
+        update web_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifier != null">modifier = #{modifier},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            <if test="isDelete != null">is_delete = #{isDelete},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="userAccount != null">user_account = #{userAccount},</if>
+            <if test="nickName != null">nick_name = #{nickName},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="phoneNumber != null">phone_number = #{phoneNumber},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="enabled != null">enabled = #{enabled},</if>
+            <if test="loginIp != null">login_ip = #{loginIp},</if>
+            <if test="loginDate != null">login_date = #{loginDate},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWebUserById" parameterType="String">
+        delete from web_user where id = #{id}
+    </delete>
+
+    <delete id="deleteWebUserByIds" parameterType="String">
+        delete from web_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
