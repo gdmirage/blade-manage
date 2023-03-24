@@ -1,8 +1,8 @@
 package com.blade.chatgpt.service;
 
-import java.util.List;
-
 import com.blade.chatgpt.domain.WebUser;
+
+import java.util.List;
 
 /**
  * web用户Service接口
@@ -58,4 +58,20 @@ public interface IWebUserService {
      * @return 结果
      */
     int deleteWebUserById(String id);
+
+    /**
+     * 注册web用户
+     *
+     * @param webUser 注册对象
+     * @return token
+     */
+    String registerWebUser(WebUser webUser);
+
+    /**
+     * 登录web用户
+     *
+     * @param webUser 登录对象
+     * @return token
+     */
+    String loginWebUser(WebUser webUser);
 }

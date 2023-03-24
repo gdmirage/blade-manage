@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
  * @date 2023/3/15 11:10
  */
 public class TranslateRequest {
-    @NotBlank
+    @NotBlank(message = "翻译文本不能为空")
     private String content;
     private String targetLanguage;
 
