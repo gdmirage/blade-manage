@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.chatgpt.mapper.WebUserLimitMsgMapper">
+    
+    <resultMap type="com.blade.chatgpt.domain.WebUserLimitMsg" id="WebUserLimitMsgResult">
+        <result property="id"    column="id"    />
+        <result property="creator"    column="creator"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modifier"    column="modifier"    />
+        <result property="modifyTime"    column="modify_time"    />
+        <result property="isDelete"    column="is_delete"    />
+        <result property="version"    column="version"    />
+        <result property="userId"    column="user_id"    />
+        <result property="availableNum"    column="available_num"    />
+        <result property="availableStartTime"    column="available_start_time"    />
+        <result property="availableEndTime"    column="available_end_time"    />
+        <result property="enabled"    column="enabled"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectWebUserLimitMsgVo">
+        select id, creator, create_time, modifier, modify_time, is_delete, version, user_id, available_num, available_start_time, available_end_time, enabled, remark from web_user_limit_msg
+    </sql>
+
+    <select id="selectWebUserLimitMsgList" parameterType="com.blade.chatgpt.domain.WebUserLimitMsg" resultMap="WebUserLimitMsgResult">
+        <include refid="selectWebUserLimitMsgVo"/>
+        <where>  
+            <if test="params.beginModifyTime != null and params.beginModifyTime != '' and params.endModifyTime != null and params.endModifyTime != ''"> and modify_time between #{params.beginModifyTime} and #{params.endModifyTime}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="availableNum != null "> and available_num = #{availableNum}</if>
+            <if test="params.beginAvailableStartTime != null and params.beginAvailableStartTime != '' and params.endAvailableStartTime != null and params.endAvailableStartTime != ''"> and available_start_time between #{params.beginAvailableStartTime} and #{params.endAvailableStartTime}</if>
+            <if test="params.beginAvailableEndTime != null and params.beginAvailableEndTime != '' and params.endAvailableEndTime != null and params.endAvailableEndTime != ''"> and available_end_time between #{params.beginAvailableEndTime} and #{params.endAvailableEndTime}</if>
+            <if test="enabled != null  and enabled != ''"> and enabled = #{enabled}</if>
+        </where>
+    </select>
+    
+    <select id="selectWebUserLimitMsgById" parameterType="String" resultMap="WebUserLimitMsgResult">
+        <include refid="selectWebUserLimitMsgVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWebUserLimitMsg" parameterType="com.blade.chatgpt.domain.WebUserLimitMsg">
+        insert into web_user_limit_msg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="creator != null">creator,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modifier != null">modifier,</if>
+            <if test="modifyTime != null">modify_time,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="version != null">version,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="availableNum != null">available_num,</if>
+            <if test="availableStartTime != null">available_start_time,</if>
+            <if test="availableEndTime != null">available_end_time,</if>
+            <if test="enabled != null">enabled,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="creator != null">#{creator},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modifier != null">#{modifier},</if>
+            <if test="modifyTime != null">#{modifyTime},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="version != null">#{version},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="availableNum != null">#{availableNum},</if>
+            <if test="availableStartTime != null">#{availableStartTime},</if>
+            <if test="availableEndTime != null">#{availableEndTime},</if>
+            <if test="enabled != null">#{enabled},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWebUserLimitMsg" parameterType="com.blade.chatgpt.domain.WebUserLimitMsg">
+        update web_user_limit_msg
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifier != null">modifier = #{modifier},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            <if test="isDelete != null">is_delete = #{isDelete},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="availableNum != null">available_num = #{availableNum},</if>
+            <if test="availableStartTime != null">available_start_time = #{availableStartTime},</if>
+            <if test="availableEndTime != null">available_end_time = #{availableEndTime},</if>
+            <if test="enabled != null">enabled = #{enabled},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWebUserLimitMsgById" parameterType="String">
+        delete from web_user_limit_msg where id = #{id}
+    </delete>
+
+    <delete id="deleteWebUserLimitMsgByIds" parameterType="String">
+        delete from web_user_limit_msg where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectLimitMsgByUserAccount" resultMap="WebUserLimitMsgResult">
+        SELECT msg.* FROM web_user_limit_msg msg
+        LEFT JOIN web_user user ON user.id = msg.user_id
+        WHERE msg.is_delete = 'no' and msg.enabled = 'yes'
+        AND user.user_account = #{userAccount}
+        ORDER BY create_time DESC limit 1
+    </select>
+</mapper>

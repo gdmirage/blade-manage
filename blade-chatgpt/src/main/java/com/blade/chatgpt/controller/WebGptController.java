@@ -44,8 +44,16 @@ public class WebGptController extends BaseController {
         this.redisCache = redisCache;
     }
 
+    private String getAccountByToken(String token) {
+        if (StringUtils.isBlank(token)) {
+            return null;
+        }
+
+        return StringUtils.split(token, "_")[0];
+    }
+
     private boolean matchToken(String token) {
-        String userAccount = StringUtils.split(token, "_")[0];
+        String userAccount = this.getAccountByToken(token);
         String exitToken = this.redisCache.getCacheObject("login_token:" + userAccount);
         if (Objects.equals(token, exitToken)) {
             return true;
@@ -64,6 +72,7 @@ public class WebGptController extends BaseController {
             return error("用户登录失效，请重新登录");
         }
 
+        translateRequest.setUserAccount(this.getAccountByToken(token));
 //        return success("接口调试中");
         return success(this.gptApiRequestMsgService.translate(translateRequest));
     }

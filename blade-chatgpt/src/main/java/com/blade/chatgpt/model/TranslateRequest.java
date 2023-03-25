@@ -12,6 +12,7 @@ public class TranslateRequest {
     @NotBlank(message = "翻译文本不能为空")
     private String content;
     private String targetLanguage;
+    private String userAccount;
 
     public String getContent() {
         return content;
@@ -27,5 +28,13 @@ public class TranslateRequest {
 
     public void setTargetLanguage(String targetLanguage) {
         this.targetLanguage = targetLanguage;
+    }
+
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
     }
 }
