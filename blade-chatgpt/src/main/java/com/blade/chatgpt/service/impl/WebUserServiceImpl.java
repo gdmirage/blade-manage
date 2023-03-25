@@ -125,7 +125,7 @@ public class WebUserServiceImpl implements IWebUserService {
 
     @Override
     public String loginWebUser(WebUser webUser) {
-        WebUser exit = this.webUserMapper.selectWebUserById(webUser.getUserAccount());
+        WebUser exit = this.webUserMapper.selectUserByUserAccount(webUser.getUserAccount());
 
         if (null == exit) {
             exit = this.webUserMapper.selectUserByEmail(webUser.getEmail());
@@ -136,7 +136,7 @@ public class WebUserServiceImpl implements IWebUserService {
         }
 
         if (!Objects.equals(MD5Util.encode32ToUpperCase(webUser.getPassword()), exit.getPassword())) {
-            throw new RuntimeException("密码不正确");
+                throw new RuntimeException("密码不正确");
         }
 
         exit.setModifier(UserConstants.SYS_USER);
