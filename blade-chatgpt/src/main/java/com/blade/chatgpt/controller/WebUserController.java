@@ -71,7 +71,7 @@ public class WebUserController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('chatgpt:webuser:add')")
     @Log(title = "web用户", businessType = BusinessType.INSERT)
-    @PostMapping
+    @PostMapping("/add")
     public AjaxResult add(@RequestBody WebUser webUser) {
         return toAjax(webUserService.insertWebUser(webUser));
     }

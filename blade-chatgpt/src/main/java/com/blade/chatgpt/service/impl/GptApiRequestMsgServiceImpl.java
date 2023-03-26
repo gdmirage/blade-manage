@@ -1,25 +1,18 @@
 package com.blade.chatgpt.service.impl;
 
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-import com.blade.chatgpt.OpenAiClient;
-import com.blade.chatgpt.domain.GptAccount;
-import com.blade.chatgpt.entity.chat.ChatChoice;
-import com.blade.chatgpt.entity.chat.ChatCompletion;
-import com.blade.chatgpt.entity.chat.ChatCompletionResponse;
-import com.blade.chatgpt.entity.chat.Message;
+import com.blade.chatgpt.domain.WebUserLimitMsg;
 import com.blade.chatgpt.model.TranslateRequest;
 import com.blade.chatgpt.service.IGptAccountService;
+import com.blade.chatgpt.service.IWebUserLimitMsgService;
 import com.blade.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import com.blade.chatgpt.mapper.GptApiRequestMsgMapper;
 import com.blade.chatgpt.domain.GptApiRequestMsg;
 import com.blade.chatgpt.service.IGptApiRequestMsgService;
-import sun.rmi.runtime.Log;
 
 /**
  * GPT API 请求信息Service业务层处理
@@ -33,10 +26,13 @@ public class GptApiRequestMsgServiceImpl implements IGptApiRequestMsgService {
 
     private final GptApiRequestMsgMapper gptApiRequestMsgMapper;
     private final IGptAccountService gptAccountService;
+    private final IWebUserLimitMsgService webUserLimitMsgService;
 
-    public GptApiRequestMsgServiceImpl(GptApiRequestMsgMapper gptApiRequestMsgMapper, IGptAccountService gptAccountService) {
+    public GptApiRequestMsgServiceImpl(GptApiRequestMsgMapper gptApiRequestMsgMapper, IGptAccountService gptAccountService,
+                                       IWebUserLimitMsgService webUserLimitMsgService) {
         this.gptApiRequestMsgMapper = gptApiRequestMsgMapper;
         this.gptAccountService = gptAccountService;
+        this.webUserLimitMsgService = webUserLimitMsgService;
     }
 
     /**
@@ -107,7 +103,10 @@ public class GptApiRequestMsgServiceImpl implements IGptApiRequestMsgService {
     }
 
     public String translate(TranslateRequest request) {
-        GptAccount gptAccount = this.gptAccountService.getOneGptAccount();
+
+        this.validateLimitMsg(request.getUserAccount());
+
+        /*GptAccount gptAccount = this.gptAccountService.getOneGptAccount();
 //        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 10809));
         OpenAiClient client = OpenAiClient.builder()
                 .connectTimeout(500)
@@ -130,5 +129,21 @@ public class GptApiRequestMsgServiceImpl implements IGptApiRequestMsgService {
         }
 
         return returnContent.toString();
+        */
+
+        return "这是个测试";
+    }
+
+    private boolean validateLimitMsg(String userAccount) {
+        WebUserLimitMsg limitMsg = this.webUserLimitMsgService.selectLimitMsgByUserAccount(userAccount);
+        if (null == limitMsg) {
+            throw new RuntimeException("用户无额度，请联系客服！");
+        }
+
+        if (null == limitMsg.getAvailableEndTime() || limitMsg.getAvailableEndTime().before(new Date())) {
+            throw new RuntimeException("用户无额度，请联系客服！");
+        }
+
+        return false;
     }
 }

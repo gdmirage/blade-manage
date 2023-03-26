@@ -1,8 +1,8 @@
 package com.blade.chatgpt.mapper;
 
-import java.util.List;
-
 import com.blade.chatgpt.domain.WebUser;
+
+import java.util.List;
 
 /**
  * web用户Mapper接口
@@ -58,4 +58,20 @@ public interface WebUserMapper {
      * @return 结果
      */
     int deleteWebUserByIds(String[] ids);
+
+    /**
+     * 根据用户账号查询web用户
+     *
+     * @param userAccount 用户账号
+     * @return {@link WebUser}
+     */
+    WebUser selectUserByUserAccount(String userAccount);
+
+    /**
+     * 根据邮箱查询web用户
+     *
+     * @param email 邮箱
+     * @return {@link WebUser}
+     */
+    WebUser selectUserByEmail(String email);
 }
