@@ -110,9 +110,9 @@ public class GptApiRequestMsgServiceImpl implements IGptApiRequestMsgService {
         GptAccount gptAccount = this.gptAccountService.getOneGptAccount();
 //        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 10809));
         OpenAiClient client = OpenAiClient.builder()
-                .connectTimeout(50)
-                .readTimeout(50)
-                .writeTimeout(50)
+                .connectTimeout(500)
+                .readTimeout(500)
+                .writeTimeout(500)
                 .apiKey(gptAccount.getKey())
 //                .proxy(proxy)
                 .apiHost("https://api.openai.com/")
