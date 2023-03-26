@@ -1,18 +1,29 @@
 package com.blade.chatgpt.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
+import com.alibaba.fastjson2.JSON;
+import com.blade.chatgpt.OpenAiClient;
+import com.blade.chatgpt.domain.GptAccount;
+import com.blade.chatgpt.domain.GptApiRequestMsg;
 import com.blade.chatgpt.domain.WebUserLimitMsg;
+import com.blade.chatgpt.entity.chat.ChatChoice;
+import com.blade.chatgpt.entity.chat.ChatCompletion;
+import com.blade.chatgpt.entity.chat.ChatCompletionResponse;
+import com.blade.chatgpt.entity.chat.Message;
+import com.blade.chatgpt.mapper.GptApiRequestMsgMapper;
 import com.blade.chatgpt.model.TranslateRequest;
 import com.blade.chatgpt.service.IGptAccountService;
+import com.blade.chatgpt.service.IGptApiRequestMsgService;
 import com.blade.chatgpt.service.IWebUserLimitMsgService;
+import com.blade.common.constant.UserConstants;
 import com.blade.common.utils.DateUtils;
+import com.blade.common.utils.uuid.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import com.blade.chatgpt.mapper.GptApiRequestMsgMapper;
-import com.blade.chatgpt.domain.GptApiRequestMsg;
-import com.blade.chatgpt.service.IGptApiRequestMsgService;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * GPT API 请求信息Service业务层处理
@@ -102,17 +113,19 @@ public class GptApiRequestMsgServiceImpl implements IGptApiRequestMsgService {
         return gptApiRequestMsgMapper.deleteGptApiRequestMsgById(id);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public String translate(TranslateRequest request) {
 
         this.validateLimitMsg(request.getUserAccount());
 
-        /*GptAccount gptAccount = this.gptAccountService.getOneGptAccount();
+        GptAccount gptAccount = this.gptAccountService.getOneGptAccount();
 //        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 10809));
         OpenAiClient client = OpenAiClient.builder()
                 .connectTimeout(500)
                 .readTimeout(500)
                 .writeTimeout(500)
-                .apiKey(gptAccount.getKey())
+                .apiKey(gptAccount.getGptKey())
 //                .proxy(proxy)
                 .apiHost("https://api.openai.com/")
                 .build();
@@ -121,17 +134,36 @@ public class GptApiRequestMsgServiceImpl implements IGptApiRequestMsgService {
         ChatCompletion chatCompletion = ChatCompletion.builder().messages(Arrays.asList(message)).build();
 
         log.info("开始请求open ai");
-        ChatCompletionResponse chatCompletionResponse = client.chatCompletion(chatCompletion);
+        String result = "{\"id\":\"chatcmpl-6yG0fnfFktSR4dBPS0CYdiaJr6wrk\",\"object\":\"chat.completion\",\"created\":1679819241,\"model\":\"gpt-3.5-turbo-0301\",\"usage\":{\"prompt_tokens\":24,\"completion_tokens\":2,\"total_tokens\":26},\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":\"Sky!\"},\"finish_reason\":\"stop\",\"index\":0}]}";
+        ChatCompletionResponse chatCompletionResponse = JSON.parseObject(result, ChatCompletionResponse.class);
+//        ChatCompletionResponse chatCompletionResponse = client.chatCompletion(chatCompletion);
         log.info("完成请求open ai");
         StringBuilder returnContent = new StringBuilder();
         for (ChatChoice chatChoice : chatCompletionResponse.getChoices()) {
             returnContent.append(chatChoice.getMessage().getContent());
         }
 
-        return returnContent.toString();
-        */
+        GptApiRequestMsg gptApiRequestMsg = new GptApiRequestMsg();
+        gptApiRequestMsg.setId(IdUtils.fastUUID());
+        gptApiRequestMsg.setCreateTime(DateUtils.getNowDate());
+        gptApiRequestMsg.setCreator(UserConstants.SYS_USER);
+        gptApiRequestMsg.setModifyTime(DateUtils.getNowDate());
+        gptApiRequestMsg.setModifier(UserConstants.SYS_USER);
+        gptApiRequestMsg.setRequestContent(content);
+        gptApiRequestMsg.setApiRequest(JSON.toJSONString(chatCompletion));
+        gptApiRequestMsg.setApiResponse(JSON.toJSONString(chatCompletionResponse));
+        gptApiRequestMsg.setResponseContent(returnContent.toString());
+        gptApiRequestMsg.setUserAccount(request.getUserAccount());
+        gptApiRequestMsg.setAccountKey(gptAccount.getGptKey());
+        this.gptApiRequestMsgMapper.insertGptApiRequestMsg(gptApiRequestMsg);
 
-        return "这是个测试";
+        gptAccount.setUsedToken(gptAccount.getUsedToken() + chatCompletionResponse.getUsage().getTotalTokens());
+        this.gptAccountService.updateGptAccount(gptAccount);
+
+        return returnContent.toString();
+
+
+//        return "这是个测试";
     }
 
     private boolean validateLimitMsg(String userAccount) {

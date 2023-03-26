@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.chatgpt.mapper.GptAccountMapper">
     
-    <resultMap type="GptAccount" id="GptAccountResult">
+    <resultMap type="com.blade.chatgpt.domain.GptAccount" id="GptAccountResult">
         <result property="id"    column="id"    />
         <result property="creator"    column="creator"    />
         <result property="createTime"    column="create_time"    />
@@ -15,22 +15,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="account"    column="account"    />
         <result property="emailPassword"    column="email_password"    />
         <result property="gptPassword"    column="gpt_password"    />
-        <result property="key"    column="key"    />
+        <result property="gptKey"    column="gpt_key"    />
         <result property="totalToken"    column="total_token"    />
         <result property="usedToken"    column="used_token"    />
         <result property="enabled"    column="enabled"    />
     </resultMap>
 
     <sql id="selectGptAccountVo">
-        select id, creator, create_time, modifier, modify_time, is_delete, version, account, email_password, gpt_password, key, total_token, used_token, enabled from gpt_account
+        select id, creator, create_time, modifier, modify_time, is_delete, version, account, email_password, gpt_password, gpt_key, total_token, used_token, enabled from gpt_account
     </sql>
 
-    <select id="selectGptAccountList" parameterType="GptAccount" resultMap="GptAccountResult">
+    <select id="selectGptAccountList" parameterType="com.blade.chatgpt.domain.GptAccount" resultMap="GptAccountResult">
         <include refid="selectGptAccountVo"/>
         <where>  
             <if test="params.beginModifyTime != null and params.beginModifyTime != '' and params.endModifyTime != null and params.endModifyTime != ''"> and modify_time between #{params.beginModifyTime} and #{params.endModifyTime}</if>
             <if test="account != null  and account != ''"> and account = #{account}</if>
-            <if test="key != null  and key != ''"> and key = #{key}</if>
             <if test="enabled != null  and enabled != ''"> and enabled = #{enabled}</if>
         </where>
     </select>
@@ -40,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertGptAccount" parameterType="GptAccount">
+    <insert id="insertGptAccount" parameterType="com.blade.chatgpt.domain.GptAccount">
         insert into gpt_account
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
@@ -53,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="account != null">account,</if>
             <if test="emailPassword != null">email_password,</if>
             <if test="gptPassword != null">gpt_password,</if>
-            <if test="key != null">key,</if>
+            <if test="gptKey != null">gpt_key,</if>
             <if test="totalToken != null">total_token,</if>
             <if test="usedToken != null">used_token,</if>
             <if test="enabled != null">enabled,</if>
@@ -69,14 +68,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="account != null">#{account},</if>
             <if test="emailPassword != null">#{emailPassword},</if>
             <if test="gptPassword != null">#{gptPassword},</if>
-            <if test="key != null">#{key},</if>
+            <if test="gptKey != null">#{gptKey},</if>
             <if test="totalToken != null">#{totalToken},</if>
             <if test="usedToken != null">#{usedToken},</if>
             <if test="enabled != null">#{enabled},</if>
          </trim>
     </insert>
 
-    <update id="updateGptAccount" parameterType="GptAccount">
+    <update id="updateGptAccount" parameterType="com.blade.chatgpt.domain.GptAccount">
         update gpt_account
         <trim prefix="SET" suffixOverrides=",">
             <if test="creator != null">creator = #{creator},</if>
@@ -88,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="account != null">account = #{account},</if>
             <if test="emailPassword != null">email_password = #{emailPassword},</if>
             <if test="gptPassword != null">gpt_password = #{gptPassword},</if>
-            <if test="key != null">key = #{key},</if>
+            <if test="gptKey != null">gpt_key = #{gptKey},</if>
             <if test="totalToken != null">total_token = #{totalToken},</if>
             <if test="usedToken != null">used_token = #{usedToken},</if>
             <if test="enabled != null">enabled = #{enabled},</if>

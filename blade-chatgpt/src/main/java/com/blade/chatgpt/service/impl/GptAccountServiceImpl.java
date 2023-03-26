@@ -1,30 +1,24 @@
 package com.blade.chatgpt.service.impl;
 
-import java.util.List;
-
-import com.blade.common.core.redis.RedisCache;
-import com.blade.common.utils.DateUtils;
-import org.springframework.stereotype.Service;
-import com.blade.chatgpt.mapper.GptAccountMapper;
 import com.blade.chatgpt.domain.GptAccount;
+import com.blade.chatgpt.mapper.GptAccountMapper;
 import com.blade.chatgpt.service.IGptAccountService;
+import com.blade.common.utils.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * GPT 账号Service业务层处理
  *
  * @author blade
- * @date 2023-03-12
+ * @date 2023-03-26
  */
 @Service
 public class GptAccountServiceImpl implements IGptAccountService {
-
-    private final GptAccountMapper gptAccountMapper;
-    private final RedisCache redisCache;
-
-    public GptAccountServiceImpl(GptAccountMapper gptAccountMapper, RedisCache redisCache) {
-        this.gptAccountMapper = gptAccountMapper;
-        this.redisCache = redisCache;
-    }
+    @Autowired
+    private GptAccountMapper gptAccountMapper;
 
     /**
      * 查询GPT 账号
@@ -95,9 +89,7 @@ public class GptAccountServiceImpl implements IGptAccountService {
 
     @Override
     public GptAccount getOneGptAccount() {
-        GptAccount gptAccount = new GptAccount();
-        gptAccount.setKey("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");
-        gptAccount.setAccount("");
+        GptAccount gptAccount = this.gptAccountMapper.selectGptAccountById("7647dc07-0a31-484f-aba8-47e63d01528b");
         return gptAccount;
     }
 }

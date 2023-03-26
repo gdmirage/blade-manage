@@ -61,6 +61,7 @@ public interface IGptAccountService {
 
     /**
      * 获取一个张
+     *
      * @return {@link GptAccount}
      */
     GptAccount getOneGptAccount();

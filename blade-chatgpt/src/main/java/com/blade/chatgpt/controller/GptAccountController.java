@@ -2,7 +2,6 @@ package com.blade.chatgpt.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,25 +23,24 @@ import com.blade.common.core.page.TableDataInfo;
 
 /**
  * GPT 账号Controller
- *
+ * 
  * @author blade
- * @date 2023-03-12
+ * @date 2023-03-26
  */
 @RestController
 @RequestMapping("/chatgpt/gptAccount")
-public class GptAccountController extends BaseController {
-    private final IGptAccountService gptAccountService;
-
-    public GptAccountController(IGptAccountService gptAccountService) {
-        this.gptAccountService = gptAccountService;
-    }
+public class GptAccountController extends BaseController
+{
+    @Autowired
+    private IGptAccountService gptAccountService;
 
     /**
      * 查询GPT 账号列表
      */
     @PreAuthorize("@ss.hasPermi('chatgpt:gptAccount:list')")
     @GetMapping("/list")
-    public TableDataInfo list(GptAccount gptAccount) {
+    public TableDataInfo list(GptAccount gptAccount)
+    {
         startPage();
         List<GptAccount> list = gptAccountService.selectGptAccountList(gptAccount);
         return getDataTable(list);
@@ -54,7 +52,8 @@ public class GptAccountController extends BaseController {
     @PreAuthorize("@ss.hasPermi('chatgpt:gptAccount:export')")
     @Log(title = "GPT 账号", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, GptAccount gptAccount) {
+    public void export(HttpServletResponse response, GptAccount gptAccount)
+    {
         List<GptAccount> list = gptAccountService.selectGptAccountList(gptAccount);
         ExcelUtil<GptAccount> util = new ExcelUtil<GptAccount>(GptAccount.class);
         util.exportExcel(response, list, "GPT 账号数据");
@@ -65,7 +64,8 @@ public class GptAccountController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('chatgpt:gptAccount:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") String id) {
+    public AjaxResult getInfo(@PathVariable("id") String id)
+    {
         return success(gptAccountService.selectGptAccountById(id));
     }
 
@@ -75,7 +75,8 @@ public class GptAccountController extends BaseController {
     @PreAuthorize("@ss.hasPermi('chatgpt:gptAccount:add')")
     @Log(title = "GPT 账号", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody GptAccount gptAccount) {
+    public AjaxResult add(@RequestBody GptAccount gptAccount)
+    {
         return toAjax(gptAccountService.insertGptAccount(gptAccount));
     }
 
@@ -85,7 +86,8 @@ public class GptAccountController extends BaseController {
     @PreAuthorize("@ss.hasPermi('chatgpt:gptAccount:edit')")
     @Log(title = "GPT 账号", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody GptAccount gptAccount) {
+    public AjaxResult edit(@RequestBody GptAccount gptAccount)
+    {
         return toAjax(gptAccountService.updateGptAccount(gptAccount));
     }
 
@@ -94,8 +96,9 @@ public class GptAccountController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('chatgpt:gptAccount:remove')")
     @Log(title = "GPT 账号", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable String[] ids) {
+	@DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable String[] ids)
+    {
         return toAjax(gptAccountService.deleteGptAccountByIds(ids));
     }
 }
