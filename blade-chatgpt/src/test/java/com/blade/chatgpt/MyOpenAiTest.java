@@ -32,7 +32,7 @@ public class MyOpenAiTest {
                 .connectTimeout(50)
                 .readTimeout(50)
                 .writeTimeout(50)
-                .apiKey("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")
+                .apiKey("sk-**********")
                 .proxy(proxy)
                 .apiHost("https://api.openai.com/")
                 .build();
