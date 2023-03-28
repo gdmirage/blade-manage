@@ -59,7 +59,7 @@ public class OpenAiClientTest {
 //                httpLoggingInterceptor);
 
         v2 = OpenAiClient.builder()
-                .apiKey("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")
+                .apiKey("sk-************")
                 .connectTimeout(50)
                 .writeTimeout(50)
                 .readTimeout(50)
